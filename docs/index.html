@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PseudoSize</title>
+  <style>
+    main {
+      margin: 10px;
+    }
+    * {
+      margin: 0; padding: 0;
+      width: fit-content;
+      height: fit-content;
+    }
+    #a1 { font-size: 12px; }
+    #a2 { font-size: 24px; }
+    #a3 { font-size: 36px; }
+
+    #b1 { font-size: 12pt; }
+    #b2 { font-size: 24pt; }
+    #b3 { font-size: 36pt; }
+
+    #log {
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <main id="main">
+    <div id="a1">Web technology for developers 개발자를 위한 웹 기술</div>
+    <div id="a2">Web technology for developers 개발자를 위한 웹 기술</div>
+    <div id="a3">Web technology for developers 개발자를 위한 웹 기술</div>
+    <div id="b1">Web technology for developers 개발자를 위한 웹 기술</div>
+    <div id="b2">Web technology for developers 개발자를 위한 웹 기술</div>
+    <div id="b3">Web technology for developers 개발자를 위한 웹 기술</div>
+    <div id="log"></div>
+  </main>
+  <script>
+    main.addEventListener("click", (e)=>{
+      while (log.firstChild) {
+        log.removeChild(log.firstChild);
+      }
+      for (const id of [a1, a2, a3, b1, b2, b3]) {
+        let rect = id.getBoundingClientRect();
+        let x = `${id.id}: (${rect?.width}, ${rect?.height})`;
+        let el = document.createElement("div");
+        el.appendChild(document.createTextNode(x));
+        log.appendChild(el);
+      }
+    });    
+  </script>
+</body>
+</html>
